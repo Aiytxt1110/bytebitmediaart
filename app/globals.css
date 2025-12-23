@@ -14,6 +14,10 @@
   cursor: default;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 *::-webkit-scrollbar {
   display: none;
   width: 0;

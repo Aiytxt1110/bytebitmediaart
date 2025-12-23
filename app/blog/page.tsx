@@ -1,18 +1,32 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Navigation from '../../components/Navigation/page'
 import Footer from '../../components/Footer/page'
 import { blogPosts, categories, BlogPost } from './blogData'
 import { ArticleContent } from './ArticleContent'
 
 export default function BlogPage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [searchQuery, setSearchQuery] = useState('')
   const [visiblePosts, setVisiblePosts] = useState(6)
   const [email, setEmail] = useState('')
   const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null)
+
+  // Load article from URL parameter on mount
+  useEffect(() => {
+    const articleId = searchParams.get('id')
+    if (articleId) {
+      const post = blogPosts.find(p => p.id === parseInt(articleId))
+      if (post) {
+        setSelectedPost(post)
+      }
+    }
+  }, [searchParams])
 
   // Filter posts based on category and search query
   const filteredPosts = useMemo(() => {
@@ -55,13 +69,23 @@ export default function BlogPage() {
     setVisiblePosts(6)
   }
 
+  const handleOpenArticle = (post: BlogPost) => {
+    setSelectedPost(post)
+    router.push(`/blog?id=${post.id}`, { scroll: false })
+  }
+
+  const handleCloseArticle = () => {
+    setSelectedPost(null)
+    router.push('/blog', { scroll: false })
+  }
+
   // Article Modal View
   if (selectedPost) {
     return (
       <>
         <div 
           className="fixed inset-0 bg-black/50 z-50 transition-opacity"
-          onClick={() => setSelectedPost(null)}
+          onClick={handleCloseArticle}
         />
         
         <div className="fixed inset-0 z-50 flex items-end justify-center pointer-events-none">
@@ -71,7 +95,7 @@ export default function BlogPage() {
           >
             <div className="sticky top-0 z-10">
               <button 
-                onClick={() => setSelectedPost(null)}
+                onClick={handleCloseArticle}
                 className="flex items-center absolute top-4 right-4 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition font-semibold"
               >
                 <svg className="w-10 h-10 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,18 +152,19 @@ export default function BlogPage() {
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Share this article</h3>
                   <button 
                     onClick={async () => {
+                      const shareUrl = `${window.location.origin}/blog?id=${selectedPost.id}`
                       if (navigator.share) {
                         try {
                           await navigator.share({
                             title: selectedPost.title,
                             text: selectedPost.excerpt,
-                            url: window.location.href
+                            url: shareUrl
                           })
                         } catch (err) {
                           console.log('Share cancelled')
                         }
                       } else {
-                        navigator.clipboard.writeText(window.location.href)
+                        navigator.clipboard.writeText(shareUrl)
                         alert('Link copied to clipboard!')
                       }
                     }}
@@ -162,10 +187,7 @@ export default function BlogPage() {
                     .map((post: BlogPost) => (
                       <div
                         key={post.id}
-                        onClick={() => {
-                          setSelectedPost(null)
-                          setTimeout(() => setSelectedPost(post), 50)
-                        }}
+                        onClick={() => handleOpenArticle(post)}
                         className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all cursor-pointer transform hover:-translate-y-1"
                       >
                         <div className={`h-32 bg-gradient-to-br ${post.image}`}></div>
@@ -294,7 +316,7 @@ export default function BlogPage() {
                 {displayedPosts.map((post: BlogPost, index: number) => (
                   <div
                     key={post.id}
-                    onClick={() => setSelectedPost(post)}
+                    onClick={() => handleOpenArticle(post)}
                     className="cursor-pointer"
                   >
                     <article 

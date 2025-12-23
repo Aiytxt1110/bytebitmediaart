@@ -1,33 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link'
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, MessageCircle } from 'lucide-react';
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.1, rootMargin: "-100px" }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/15 dark:bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-blue-500/10 dark:border-blue-500/5 rounded-full" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-blue-500/5 dark:border-blue-500/5 rounded-full" />
-      </div>
+    <section className="relative h-[75vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
 
-      {/* Grid Pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]"
-        style={{
-          backgroundImage: `linear-gradient(rgb(15 23 42) 1px, transparent 1px),
-                           linear-gradient(90deg, rgb(15 23 42) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
 
       <style>{`
         @keyframes pulse-glow {
@@ -75,42 +82,30 @@ export default function Hero() {
 
           {/* Subheadline */}
           <p className={`text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            Bytebit Media Art | ออกแบบ UX/UI, กราฟิก ไปจนถึงพัฒนาเว็บไซต์ แพลตฟอร์ม และระบบ SaaS 
+            Bytebit Media Art | ออกแบบ UX/UI, กราฟิก ไปจนถึงพัฒนาเว็บไซต์ แพลตฟอร์ม และระบบ SaaS
             ที่พร้อมขยายตัวตามการเติบโตของธุรกิจคุณ
           </p>
 
           {/* CTAs */}
-          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 space-y-4 sm:space-y-0 mb-16 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 overflow-hidden flex items-center gap-2">
-              <Link href="/#services"><span className="relative z-10">ดูบริการทั้งหมด</span></Link>
+              <Link href="/services"><span className="relative z-10">ดูบริการทั้งหมด</span></Link>
               <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-            
-            <button className="group px-8 py-4 bg-white dark:bg-slate-800 border-2 border-gray-300 dark:border-slate-700 hover:border-blue-500 dark:hover:border-purple-500 text-gray-700 dark:text-gray-200 font-semibold rounded-xl shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-              เริ่มใช้งาน SaaS ฟรี
-            </button>
+            <Link href="/services/saas"><span className="px-8 py-4 bg-transparent border-2 border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/20 font-semibold rounded-xl transition-all">เริ่มใช้งาน SaaS ฟรี</span></Link>
           </div>
-
-          {/* Stats */}
-          <div className={`grid grid-cols-3 gap-8 max-w-xl mx-auto transition-all duration-1000 delay-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            {[
-              { value: "50+", label: "โปรเจกต์สำเร็จ", icon: "🚀" },
-              { value: "98%", label: "ลูกค้าพึงพอใจ", icon: "⭐" },
-              { value: "24/7", label: "ซัพพอร์ต", icon: "💬" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center group hover:scale-110 transition-transform duration-300">
-                <div className="text-3xl mb-2 group-hover:scale-125 transition-transform">
-                  {stat.icon}
-                </div>
-                <div className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          <div
+            className="my-8 transition-all duration-600"
+            style={{ transitionDelay: "600ms" }}
+          >
+            <a
+              href="/#contact"
+              className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span className="text-sm">หรือติดต่อทีมงานเพื่อปรึกษาฟรี</span>
+            </a>
           </div>
         </div>
       </div>

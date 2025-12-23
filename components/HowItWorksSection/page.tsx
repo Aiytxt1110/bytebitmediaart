@@ -122,43 +122,23 @@ export default function HowItWorksSection() {
 
         {/* Steps */}
         <div className="relative">
-          {/* Connection Line - Desktop */}
-          <div className="hidden lg:block absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+          <div className="grid grid-cols-5 divide-x divide-indigo-500 gap-8">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (
                 <div
                   key={step.step}
-                  className={`relative text-center lg:text-left ${
-                    isVisible ? 'animate-fade-in-up-delay' : 'opacity-0'
-                  }`}
-                  style={{ animationDelay: `${index * 0.15}s` }}
+                  className="relative text-center lg:text-left"
                 >
-                  {/* Icon Container */}
-                  <div className="relative inline-flex lg:flex justify-center lg:justify-start mb-6">
-                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-blue-500/5 dark:from-blue-500/30 dark:to-blue-500/10 flex items-center justify-center glow-effect transition-all duration-300">
-                      <Icon className="w-7 h-7 text-blue-600 dark:text-blue-400" />
-                    </div>
-                    {/* Step Number */}
-                    <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-blue-600 dark:bg-blue-500 text-white text-xs font-bold flex items-center justify-center shadow-lg">
-                      {step.step}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {step.description}
-                  </p>
-
-                  {/* Arrow - Desktop Only */}
-                  {index < steps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 -right-4 w-8 h-0.5 bg-blue-500/30" />
-                  )}
+                  <div className="flex flex-col items-center justify-center text-center px-6 pb-6">
+                    <Icon className="w-7 h-7 text-blue-600 dark:text-blue-400" />
+                    <h3 className="mb-2 text-xl font-semibold text-gray-600 dark:text-gray-300">
+                      {step.title}
+                    </h3>
+                    <p className="mb-4 text-sm text-slate-500">
+                      {step.description}
+                    </p>
+                  </div> 
                 </div>
               );
             })}

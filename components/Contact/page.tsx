@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Mail, MessageSquare, Phone, MapPin } from 'lucide-react'
+import LiveChatWidget from './LiveChatWidget'
 
 export default function Contact() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -17,7 +18,7 @@ export default function Contact() {
     {
       icon: <MessageSquare className="w-6 h-6" />,
       label: 'Messenger',
-      action: () => window.open('https://m.me/your-page-id', '_blank'),
+      action: () => window.open('https://m.me/profile.php?id=61568399947597&locale=th_TH', '_blank'),
       link: 'BytebitMediaArt Page',
       color: 'from-purple-500 to-pink-500'
     },
@@ -44,7 +45,7 @@ export default function Contact() {
           {/* Left Column - Header */}
           <div className="space-y-6">
             <div className="inline-block">
-              <span className="text-purple-600 dark:text-purple-400 font-semibold text-sm tracking-wider uppercase">
+              <span className="text-purple-600 dark:text-purple-400 font-semibold text-lg tracking-wider uppercase">
                 Get In Touch
               </span>
               <div className="h-1 w-20 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full mt-2"></div>
@@ -61,17 +62,6 @@ export default function Contact() {
               Have a project in mind? We're here to bring your ideas to life. 
               Choose your preferred way to connect and let's create something amazing together.
             </p>
-
-            <div className="flex items-center gap-4 pt-4">
-              <div className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 border-2 border-white dark:border-slate-800"></div>
-                ))}
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                <span className="font-semibold text-gray-900 dark:text-white">500+</span> Happy Clients
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Contact Options */}
@@ -144,6 +134,8 @@ export default function Contact() {
               <span>We typically respond within 24 hours</span>
             </div>
           </div>
+          {/* Live Chat Widget */}
+          <LiveChatWidget />
         </div>
       </div>
     </section>

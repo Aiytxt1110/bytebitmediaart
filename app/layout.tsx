@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '../globals.css'
 import { ThemeProvider } from '../components/ThemeProvider/page'
+import { AuthProvider } from '../context/AuthContext'
 
 export const metadata: Metadata = {
   title: 'Bytebit Media Art - Professional Web Solutions',
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
