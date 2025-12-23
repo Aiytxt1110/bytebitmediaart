@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "deploy": "pages publish ./out",
     "lint": "next lint"
   },
   "dependencies": {
