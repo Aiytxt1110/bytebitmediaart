@@ -11,26 +11,24 @@ import Footer from '../components/Footer/page'
 
 export default function Home() {
   return (
-    <>
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 overflow-x-hidden">
       <Navigation />
-      <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900">
-        <main className="flex-grow overflow-x-hidden">
-          <Hero />
-          <Stats/>
-          <section id="about">
-            <AboutSection />
-          </section>
-          <section id="services">
-            <Services />
-          </section>
-          <WhyUsSection />
-          <HowItWorksSection/>
-          <section id="contact">
-            <Contact />
-          </section>
-        </main>
-        <Footer />
-      </div>
-    </>
+      <main className="flex-grow">
+        <Hero />
+        <Stats />
+        <section id="about">
+          <AboutSection />
+        </section>
+        <section id="services">
+          <Services />
+        </section>
+        <WhyUsSection />
+        <HowItWorksSection />
+        <section id="contact">
+          <Contact />
+        </section>
+      </main>
+      <Footer />
+    </div>
   )
 }

@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { DevService, ServiceCategory } from '../../../types/index';
+import { DevService, ServiceCategory } from '../types/service';
 
 type Props = {
   services: DevService[];

@@ -57,7 +57,7 @@ export default function SupportPage() {
   return (
     <>
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800">
@@ -243,9 +243,8 @@ export default function SupportPage() {
                       {faq.question}
                     </span>
                     <svg
-                      className={`w-6 h-6 text-purple-600 transform transition-transform flex-shrink-0 ${
-                        openFaq === index ? 'rotate-180' : ''
-                      }`}
+                      className={`w-6 h-6 text-purple-600 transform transition-transform flex-shrink-0 ${openFaq === index ? 'rotate-180' : ''
+                        }`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

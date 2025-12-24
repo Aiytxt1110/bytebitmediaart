@@ -16,7 +16,6 @@ export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const { user, role } = useAuth()
-
   const router = useRouter()
   const pathname = usePathname()
 
@@ -50,6 +49,7 @@ export default function Navigation() {
         const elementTop = elementRect.top + window.pageYOffset
         const centerPosition = elementTop - (viewportHeight / 2) + (elementHeight / 2)
 
+
         window.scrollTo({
           top: centerPosition,
           behavior: 'smooth'
@@ -72,6 +72,7 @@ export default function Navigation() {
 
           const elementTop = elementRect.top + window.pageYOffset
           const centerPosition = elementTop - (viewportHeight / 2) + (elementHeight / 2)
+
 
           window.scrollTo({
             top: centerPosition,
@@ -137,10 +138,12 @@ export default function Navigation() {
             {/* Right Section */}
             <div className="flex items-center space-x-1">
               {/* Language Selector */}
-              <LanguageSelector />
+              {/* <LanguageSelector /> */}
 
               {/* Theme Toggle */}
-              <ThemeToggle />
+              <div className="flex items-center px-6">
+                <ThemeToggle />
+              </div>
 
               {/* Sign Up Button */}
               {/* Sign Up / Profile Button */}

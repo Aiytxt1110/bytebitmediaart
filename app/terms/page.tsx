@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <>
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800">
@@ -110,7 +110,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 3. User Accounts
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 3.1 Account Creation
               </h3>
@@ -128,7 +128,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 4. Payment Terms
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 4.1 Fees and Pricing
               </h3>
@@ -168,7 +168,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 5. Intellectual Property Rights
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 5.1 Ownership of Custom Work
               </h3>
@@ -222,7 +222,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 8. SaaS-Specific Terms
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 8.1 Service Availability
               </h3>
@@ -254,7 +254,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 9. Warranties and Disclaimers
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 9.1 Service Warranty
               </h3>
@@ -332,7 +332,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 14. Dispute Resolution
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 14.1 Negotiation
               </h3>
@@ -371,7 +371,7 @@ export default function TermsPage() {
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
                 15. Governing Law and Compliance
               </h2>
-              
+
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mt-8 mb-4">
                 15.1 Governing Law
               </h3>

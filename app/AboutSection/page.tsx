@@ -69,7 +69,7 @@ export default function AboutSection() {
               >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center mb-4">
-                    <item.icon className="w-6 h-6 text-white" />
+                    {/* <item.icon className="w-6 h-6 text-white" /> */}
                   </div>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
                     {item.title}

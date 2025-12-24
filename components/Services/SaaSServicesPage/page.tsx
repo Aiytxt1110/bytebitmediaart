@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { SaaSService, ServiceCategory } from '../../../types/index';
+import { SaaSService, ServiceCategory } from '../types/service';
 import { Check } from 'lucide-react';
 
 type Props = {

@@ -32,11 +32,11 @@ export default function BlogPage() {
   const filteredPosts = useMemo(() => {
     return blogPosts.filter((post: BlogPost) => {
       const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory
-      const matchesSearch = searchQuery === '' || 
+      const matchesSearch = searchQuery === '' ||
         post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
         post.tags.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
-      
+
       return matchesCategory && matchesSearch
     })
   }, [selectedCategory, searchQuery])
@@ -50,7 +50,7 @@ export default function BlogPage() {
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       setSubscribeStatus('error')
@@ -83,18 +83,18 @@ export default function BlogPage() {
   if (selectedPost) {
     return (
       <>
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 z-50 transition-opacity"
           onClick={handleCloseArticle}
         />
-        
+
         <div className="fixed inset-0 z-50 flex items-end justify-center pointer-events-none">
-          <div 
+          <div
             className="bg-white dark:bg-slate-900 w-full h-screen shadow-2xl overflow-y-auto pointer-events-auto animate-slide-up"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="sticky top-0 z-10">
-              <button 
+              <button
                 onClick={handleCloseArticle}
                 className="flex items-center absolute top-4 right-4 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition font-semibold"
               >
@@ -134,7 +134,7 @@ export default function BlogPage() {
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedPost.tags.map((tag: string) => (
-                    <span 
+                    <span
                       key={tag}
                       className="text-xs px-3 py-1 bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 rounded-full"
                     >
@@ -150,7 +150,7 @@ export default function BlogPage() {
 
                 <div className="mt-10 pt-6 border-t border-gray-200 dark:border-slate-700">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">Share this article</h3>
-                  <button 
+                  <button
                     onClick={async () => {
                       const shareUrl = `${window.location.origin}/blog?id=${selectedPost.id}`
                       if (navigator.share) {
@@ -229,7 +229,7 @@ export default function BlogPage() {
   return (
     <>
       <Navigation />
-      
+
       <main className="pt-20">
         <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -240,7 +240,7 @@ export default function BlogPage() {
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 Insights, tutorials, and updates from our team of experts
               </p>
-              
+
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
                   <input
@@ -250,7 +250,7 @@ export default function BlogPage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full px-6 py-4 pr-12 rounded-full border-2 border-gray-200 dark:border-gray-700 dark:bg-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
                   />
-                  <button 
+                  <button
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 gradient-primary rounded-full hover:scale-110 transition-transform"
                   >
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -275,11 +275,10 @@ export default function BlogPage() {
                 <button
                   key={category}
                   onClick={() => handleCategoryChange(category)}
-                  className={`px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 ${
-                    category === selectedCategory
-                      ? 'bg-green-500 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700'
-                  }`}
+                  className={`px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105 ${category === selectedCategory
+                    ? 'bg-green-500 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700'
+                    }`}
                 >
                   {category}
                 </button>
@@ -319,7 +318,7 @@ export default function BlogPage() {
                     onClick={() => handleOpenArticle(post)}
                     className="cursor-pointer"
                   >
-                    <article 
+                    <article
                       className="bg-white dark:bg-slate-800 rounded-2xl overflow-hidden card-3d h-full flex flex-col transform hover:-translate-y-2 transition-all duration-300"
                       style={{
                         animation: `fadeInUp 0.5s ease-out ${index * 0.1}s both`
@@ -346,10 +345,10 @@ export default function BlogPage() {
                         <p className="text-gray-600 dark:text-gray-400 mb-4 flex-1 line-clamp-3">
                           {post.excerpt}
                         </p>
-                        
+
                         <div className="flex flex-wrap gap-2 mb-4">
                           {post.tags.slice(0, 3).map((tag: string) => (
-                            <span 
+                            <span
                               key={tag}
                               className="text-xs px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400 rounded-full"
                             >
@@ -385,7 +384,7 @@ export default function BlogPage() {
 
             {hasMorePosts && displayedPosts.length > 0 && (
               <div className="text-center mt-12">
-                <button 
+                <button
                   onClick={handleLoadMore}
                   className="btn-gradient text-white px-8 py-4 rounded-full font-semibold text-lg transform hover:scale-105 transition-all shadow-lg hover:shadow-xl"
                 >
@@ -407,7 +406,7 @@ export default function BlogPage() {
         <section className="py-20 gradient-primary relative overflow-hidden">
           <div className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-x-1/2 translate-y-1/2"></div>
-          
+
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div className="inline-block p-3 bg-white/20 rounded-full mb-4">
               <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -420,7 +419,7 @@ export default function BlogPage() {
             <p className="text-xl text-white/90 mb-8">
               Get the latest articles and insights delivered to your inbox every week
             </p>
-            
+
             <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
               <input
                 type="email"
@@ -430,14 +429,14 @@ export default function BlogPage() {
                 className="flex-1 px-6 py-4 rounded-full focus:outline-none focus:ring-2 focus:ring-white transition"
                 required
               />
-              <button 
+              <button
                 type="submit"
                 className="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition transform hover:scale-105 shadow-lg"
               >
                 Subscribe
               </button>
             </form>
-            
+
             {subscribeStatus === 'success' && (
               <div className="mt-6 p-4 bg-white/20 rounded-lg backdrop-blur-sm">
                 <p className="text-white font-semibold flex items-center justify-center">

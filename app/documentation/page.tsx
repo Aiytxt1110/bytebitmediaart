@@ -107,7 +107,7 @@ export default function DocumentationPage() {
   return (
     <>
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-slate-900 dark:to-slate-800">
@@ -119,7 +119,7 @@ export default function DocumentationPage() {
               <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
                 Everything you need to know about our services, processes, and best practices
               </p>
-              
+
               {/* Search Bar */}
               <div className="max-w-2xl mx-auto">
                 <div className="relative">
@@ -131,7 +131,7 @@ export default function DocumentationPage() {
                     className="w-full px-6 py-4 pr-12 rounded-full border-2 border-gray-200 dark:border-gray-700 dark:bg-slate-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent transition"
                     aria-label="Search documentation"
                   />
-                  <button 
+                  <button
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 p-2 gradient-primary rounded-full hover:opacity-90 transition"
                     aria-label="Search"
                   >
@@ -147,11 +147,10 @@ export default function DocumentationPage() {
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition ${
-                        selectedCategory === category
-                          ? 'bg-purple-600 text-white'
-                          : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-slate-700'
-                      }`}
+                      className={`px-4 py-2 rounded-full text-sm font-medium transition ${selectedCategory === category
+                        ? 'bg-purple-600 text-white'
+                        : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-slate-700'
+                        }`}
                     >
                       {category === 'all' ? 'All' : category}
                     </button>
@@ -166,8 +165,8 @@ export default function DocumentationPage() {
         <section className="py-12 bg-white dark:bg-slate-900">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-4 gap-6">
-              <Link 
-                href="/docs/guides" 
+              <Link
+                href="/docs/guides"
                 className="flex items-center space-x-3 p-4 rounded-xl bg-purple-50 dark:bg-purple-900/20 hover:bg-purple-100 dark:hover:bg-purple-900/30 transition transform hover:scale-105"
               >
                 <svg className="w-8 h-8 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -179,8 +178,8 @@ export default function DocumentationPage() {
                 </div>
               </Link>
 
-              <Link 
-                href="/docs/api" 
+              <Link
+                href="/docs/api"
                 className="flex items-center space-x-3 p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition transform hover:scale-105"
               >
                 <svg className="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,8 +191,8 @@ export default function DocumentationPage() {
                 </div>
               </Link>
 
-              <Link 
-                href="/docs/tutorials" 
+              <Link
+                href="/docs/tutorials"
                 className="flex items-center space-x-3 p-4 rounded-xl bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 transition transform hover:scale-105"
               >
                 <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,8 +205,8 @@ export default function DocumentationPage() {
                 </div>
               </Link>
 
-              <Link 
-                href="/support" 
+              <Link
+                href="/support"
                 className="flex items-center space-x-3 p-4 rounded-xl bg-orange-50 dark:bg-orange-900/20 hover:bg-orange-100 dark:hover:bg-orange-900/30 transition transform hover:scale-105"
               >
                 <svg className="w-8 h-8 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
